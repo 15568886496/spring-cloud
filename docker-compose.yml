@@ -1,0 +1,44 @@
+version: "3.6"
+services:
+  eurekaServer:
+    image: eureka-server:V1.1
+    build: platform-service
+    restart: always
+    ports:
+      - 8761:8761
+    networks:
+      - netWorkbridge
+  eurekaClient:
+    image: eureka-client:V1.1
+    build: platform-service
+    restart: always
+    ports:
+      - 9091:9091
+    networks:
+      - netWorkbridge
+  consumer:
+    image: consumer-feign:V1.1
+    build: platform-service
+    restart: always
+    ports:
+      - 9080:9080
+    networks:
+      - netWorkbridge
+  zipkin:
+    image: openzipkin/zipkin:latest
+    build: platform-service
+    restart: always
+    ports:
+      - 9411:9411
+    networks:
+      - netWorkbridge
+  zuul:
+    image: zuul:V1.1
+    build: platform-service
+    restart: always
+    ports:
+      - 8085:8085
+    networks:
+      - netWorkbridge
+networks:
+  netWorkbridge:

@@ -1,0 +1,19 @@
+step1.build docker image
+
+in each service we should create a Dockerfile, because we should base this file to build image.
+The important thing is we should move the xxx.jar in resources folder.
+
+eg:
+  docker build image commands：
+   docker build -f Dockerfile -t "${service_jar_name}":$version .
+   docker build -f Dockerfile -t eureka-client:V1.1 .
+
+step2. start up all the image and communicate with each services.
+
+  We should create a file names docker-compose.yml
+
+  and then we can compose all the services in one file.
+
+  We can config the network to guarantee each service can access other services.
+
+  The most important thing is we should expose the port for we can access the service out of the container.
